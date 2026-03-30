@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NaturaHerb Wellness | Produk Herbal Premium</title>
-    <meta name="title" content="NaturaHerb Wellness | Produk Herbal Premium">
-    <meta name="description" content="Temukan produk herbal alami untuk dukungan imun, pencernaan, tidur, energi, dan kebugaran harian.">
+    <title>Platform Kursus Offline & Online | Program Belajar Terstruktur</title>
+    <meta name="title" content="Platform Kursus Offline & Online | Program Belajar Terstruktur">
+    <meta name="description" content="Program kelas offline dan online dengan kurikulum aplikatif, mentor praktisi, jadwal fleksibel, serta alur belajar yang jelas.">
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <meta name="theme-color" content="#4f46e5">
     <meta name="image" content="assets/seo/og-default.png">
     <link rel="canonical" href="./">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="NaturaHerb Wellness">
-    <meta property="og:title" content="NaturaHerb Wellness | Produk Herbal Premium">
-    <meta property="og:description" content="Produk herbal alami untuk dukungan kesehatan dan gaya hidup seimbang.">
+    <meta property="og:site_name" content="Akademi Skill Pro">
+    <meta property="og:title" content="Platform Kursus Offline & Online | Program Belajar Terstruktur">
+    <meta property="og:description" content="Belajar skill siap kerja lewat kelas tatap muka dan live online yang terstruktur, terarah, dan didampingi mentor.">
     <meta property="og:url" content="./">
     <meta property="og:image" content="assets/seo/og-default.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Produk herbal alami untuk dukungan kesehatan harian.">
+    <meta property="og:image:alt" content="Platform kursus offline dan online dengan mentor praktisi dan program terstruktur.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NaturaHerb Wellness | Produk Herbal Premium">
-    <meta name="twitter:description" content="Dukungan herbal alami untuk imun, pencernaan, tidur, energi, dan relaksasi.">
+    <meta name="twitter:title" content="Platform Kursus Offline & Online | Program Belajar Terstruktur">
+    <meta name="twitter:description" content="Belajar lebih fokus dengan kelas offline/online, roadmap materi jelas, dan pendampingan mentor berpengalaman.">
     <meta name="twitter:image" content="assets/seo/og-default.png">
-    <meta name="twitter:image:alt" content="Produk digital siap pakai untuk membantu proses jualan digital terasa lebih cepat dan tertata.">
+    <meta name="twitter:image:alt" content="Landing page course platform untuk promosi kelas offline dan online.">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://script.google.com">
@@ -34,7 +34,8 @@
 
     <script>
         (function() {
-            const CACHE_KEY = 'herbal_global_settings';
+            const CACHE_KEY = 'course_platform_global_settings';
+            const LEGACY_CACHE_KEY = 'herbal_global_settings';
             const CACHE_AGE = 60 * 60 * 1000;
             const SEO_CONFIG = Object.assign({
                 locale: 'id_ID',
@@ -42,8 +43,8 @@
                 maxDescriptionLength: 160,
                 titleSeparator: ' | ',
                 robots: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
-                defaultSiteName: 'NaturaHerb Wellness',
-                defaultDescription: 'Temukan produk herbal alami untuk dukungan imun, pencernaan, energi, tidur, dan relaksasi harian.',
+                defaultSiteName: 'Akademi Skill Pro',
+                defaultDescription: 'Program belajar offline dan online dengan mentor praktisi, metode terstruktur, dan outcome yang terukur.',
                 defaultOgImagePath: 'assets/seo/og-default.png',
                 defaultOgImageType: 'image/png',
                 defaultOgImageWidth: 1200,
@@ -167,7 +168,9 @@
                             results.push(text);
                             if (results.length >= max) return;
                         }
-                    } catch (error) {}
+                    } catch (error) {
+                        console.warn('Unable to inspect catalog images for SEO sync.', error);
+                    }
                 });
                 return results;
             };
@@ -228,11 +231,11 @@
                 if (!signals || !signals.titles || !signals.titles.length) return '';
                 const featured = signals.titles.slice(0, 3);
                 if (featured.length === 1) {
-                    return `Temukan ${featured[0]} dan produk herbal unggulan lainnya.`;
+                    return `Temukan ${featured[0]} dan program belajar unggulan lainnya untuk akselerasi skill Anda.`;
                 }
                 const tail = featured.slice(0, featured.length - 1).join(', ');
                 const last = featured[featured.length - 1];
-                return `Temukan ${tail}, dan ${last} untuk mendukung rutinitas sehat harian Anda.`;
+                return `Temukan ${tail}, dan ${last} untuk membantu Anda belajar terarah dari dasar hingga siap praktik.`;
             };
 
             const composeDescription = (settings, siteName, productSignals) => {
@@ -593,7 +596,7 @@
                 syncSeo({ settings: data, reason: 'global-settings' });
             }
 
-            const cachedStr = localStorage.getItem(CACHE_KEY);
+            const cachedStr = localStorage.getItem(CACHE_KEY) || localStorage.getItem(LEGACY_CACHE_KEY);
             let cached = null;
             try { cached = JSON.parse(cachedStr); } catch(e){}
             const now = Date.now();
@@ -625,18 +628,62 @@
     <script defer src="assets/vendor/lucide.min.js?v=0.577.0"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        /* Animasi Muncul Halus */
-        .fade-in { animation: fadeIn 0.4s ease-out forwards; opacity: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(129, 140, 248, 0.12), transparent 36%),
+                radial-gradient(circle at 85% 10%, rgba(16, 185, 129, 0.08), transparent 30%),
+                #f8fafc;
+        }
+        .fade-in { animation: fadeIn 0.45s ease-out forwards; opacity: 0; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        /* Delay beruntun untuk grid produk */
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
+
+        .section-shell {
+            border: 1px solid rgba(226, 232, 240, 0.92);
+            border-radius: 2rem;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 20px 50px -36px rgba(15, 23, 42, 0.3);
+        }
+        .soft-divider {
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(148, 163, 184, 0), rgba(148, 163, 184, 0.45), rgba(148, 163, 184, 0));
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #eef2ff 0%, #f0fdfa 52%, #ffffff 100%);
+        }
+        .trust-chip {
+            border: 1px solid rgba(191, 219, 254, 0.7);
+            background: rgba(239, 246, 255, 0.88);
+        }
+        .feature-card,
+        .format-card,
+        .mentor-card,
+        .testimonial-card,
+        .program-step {
+            border: 1px solid rgb(226 232 240);
+            border-radius: 1.35rem;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 14px 32px -28px rgba(15, 23, 42, 0.25);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+        .feature-card:hover,
+        .format-card:hover,
+        .mentor-card:hover,
+        .testimonial-card:hover,
+        .program-step:hover,
+        .catalog-card:hover {
+            transform: translateY(-4px);
+            border-color: rgb(199 210 254);
+            box-shadow: 0 20px 42px -30px rgba(79, 70, 229, 0.28);
+        }
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.9rem;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 0.95rem;
             align-items: stretch;
         }
         .catalog-card {
@@ -647,132 +694,311 @@
             box-shadow: 0 12px 32px -24px rgba(15, 23, 42, 0.28);
             transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
         }
-        .catalog-card:hover {
-            transform: translateY(-4px);
-            border-color: rgb(199 210 254);
-            box-shadow: 0 18px 38px -24px rgba(79, 70, 229, 0.26);
-        }
-        .catalog-media {
-            aspect-ratio: 4 / 4.6;
-        }
-        .catalog-image {
-            transition: transform 0.4s ease;
-        }
-        .catalog-card:hover .catalog-image {
-            transform: scale(1.04);
-        }
-        .catalog-title {
-            min-height: 2.65rem;
-        }
-        .catalog-desc {
-            min-height: 3.9rem;
-        }
+        .catalog-media { aspect-ratio: 4 / 4.4; }
+        .catalog-image { transition: transform 0.4s ease; }
+        .catalog-card:hover .catalog-image { transform: scale(1.04); }
+        .catalog-title { min-height: 2.65rem; }
+        .catalog-desc { min-height: 3.9rem; }
+
         @media (min-width: 576px) {
             .catalog-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 1rem;
             }
         }
-        @media (min-width: 992px) {
+        @media (min-width: 768px) {
+            .catalog-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 1200px) {
             .catalog-grid {
                 grid-template-columns: repeat(4, minmax(0, 1fr));
                 gap: 1.15rem;
             }
         }
-        @media (min-width: 1280px) {
-            .catalog-grid {
-                grid-template-columns: repeat(5, minmax(0, 1fr));
-            }
-        }
     </style>
 </head>
-<body class="bg-[#f8f9fa] text-slate-800">
+<body class="text-slate-800 antialiased">
 
-    <header class="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center gap-4">
-           <div class="flex-1 flex items-center gap-3 min-w-0">
+    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200/90 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center gap-3 md:gap-4">
+            <div class="flex-1 flex items-center gap-3 min-w-0">
                 <img id="dyn-site-logo" src="" alt="" class="h-8 md:h-10 w-auto hidden select-none object-contain flex-shrink-0 transition-transform hover:scale-105" loading="lazy">
-                <i id="logo-fallback" data-lucide="layers" class="w-8 h-8 text-indigo-600 flex-shrink-0 transition-transform hover:rotate-12"></i>
-                <strong class="dyn-site-name text-lg md:text-2xl font-black text-indigo-600 tracking-tighter uppercase truncate block">WEB KURSUS OFFLINE</strong>
+                <i id="logo-fallback" data-lucide="graduation-cap" class="w-8 h-8 text-indigo-600 flex-shrink-0"></i>
+                <strong class="dyn-site-name text-base sm:text-lg md:text-xl font-extrabold text-indigo-700 tracking-tight uppercase truncate block">Akademi Skill Pro</strong>
             </div>
-            <nav class="hidden lg:flex items-center gap-4 text-xs font-bold uppercase tracking-wider text-slate-500">
-                <a href="about.html" class="hover:text-indigo-600">Tentang</a>
-                <a href="courses.html" class="hover:text-indigo-600">Kursus</a>
+            <nav class="hidden lg:flex items-center gap-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+                <a href="#katalog" class="hover:text-indigo-600">Program</a>
                 <a href="schedules.html" class="hover:text-indigo-600">Jadwal</a>
-                <a href="instructors.html" class="hover:text-indigo-600">Instruktur</a>
-                <a href="gallery.html" class="hover:text-indigo-600">Galeri</a>
+                <a href="#metode-belajar" class="hover:text-indigo-600">Metode</a>
+                <a href="instructors.html" class="hover:text-indigo-600">Mentor</a>
                 <a href="testimonials.html" class="hover:text-indigo-600">Testimoni</a>
                 <a href="contact.html" class="hover:text-indigo-600">Kontak</a>
             </nav>
-            <a href="login.html" class="flex-shrink-0 bg-indigo-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-indigo-300 hover:-translate-y-0.5 transition-all flex items-center gap-2 group whitespace-nowrap">
+            <a href="login.html" class="flex-shrink-0 bg-indigo-600 text-white px-4 py-2.5 md:px-5 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-0.5 transition-all flex items-center gap-2 group whitespace-nowrap">
                 <span>Login Admin</span>
                 <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
             </a>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 py-20 text-center">
-        <div class="inline-block bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 fade-in">Kursus Offline Profesional</div>
-        <h1 data-seo-title class="text-4xl md:text-6xl font-black tracking-tight mb-6 text-slate-900 fade-in delay-1">Naikkan skill praktis lewat kelas tatap muka yang terstruktur dan siap kerja</h1>
-        <p data-seo-description class="text-xl md:text-2xl text-slate-500 max-w-4xl mx-auto mb-10 fade-in delay-2 font-medium">Pilih program pelatihan, workshop, atau bootcamp offline dengan jadwal jelas, instruktur berpengalaman, dan pendampingan sampai tuntas.</p>
-        <a href="#katalog" class="inline-block bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-slate-300 hover:scale-105 transition-all fade-in delay-3">Lihat Jadwal & Program</a>
-    </section>
+    <main class="pb-8 md:pb-10">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 md:pt-12">
+            <div class="section-shell hero-gradient p-6 sm:p-8 lg:p-10">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+                    <div class="lg:col-span-7 text-left">
+                        <div class="inline-flex items-center rounded-full trust-chip px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.24em] text-indigo-600 fade-in">Offline & Online Course Platform</div>
+                        <h1 data-seo-title class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-slate-900 fade-in delay-1">Belajar skill yang relevan dengan kerja nyata lewat kelas <span class="text-indigo-600">offline dan online</span> yang terstruktur</h1>
+                        <p data-seo-description class="mt-5 text-base sm:text-lg lg:text-xl text-slate-600 leading-8 max-w-3xl fade-in delay-2">Kurikulum aplikatif, mentor praktisi, dan alur pembelajaran yang jelas membantu Anda naik level lebih cepat — dari pemula sampai siap implementasi di dunia kerja.</p>
 
-    <section class="max-w-4xl mx-auto px-6 pb-6 md:pb-10">
-        <div class="rounded-[1.75rem] border border-indigo-100 bg-white/95 px-6 py-6 md:px-8 md:py-7 text-center shadow-sm shadow-slate-200">
-            <p class="text-sm md:text-base leading-7 text-slate-600 font-medium">Kami menghadirkan program kursus tatap muka dengan kurikulum aplikatif, praktik langsung, kuota kelas terukur, dan alur pendaftaran yang mudah untuk individu maupun corporate training.</p>
-        </div>
-    </section>
+                        <div class="mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4 fade-in delay-3">
+                            <a href="#katalog" class="inline-flex justify-center items-center rounded-full bg-slate-900 text-white px-6 py-3.5 text-sm md:text-base font-bold shadow-lg shadow-slate-300 hover:bg-slate-800 transition-colors">Lihat Program Belajar</a>
+                            <a href="schedules.html" class="inline-flex justify-center items-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm md:text-base font-bold text-slate-700 hover:border-indigo-300 hover:text-indigo-700 transition-colors">Cek Jadwal Terdekat</a>
+                        </div>
 
-    <section id="katalog" class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-8 md:py-10 mb-20 scroll-mt-24">
-        <div class="max-w-2xl mx-auto text-center mb-8 md:mb-10">
-            <div class="inline-flex items-center rounded-full border border-indigo-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-indigo-600 shadow-sm shadow-slate-100">Pilih Program Sesuai Target Belajar</div>
-            <h2 class="mt-4 text-2xl md:text-3xl font-black tracking-tight text-slate-900">Temukan kursus offline berdasarkan kategori, level, durasi, dan lokasi kelas</h2>
-            <p class="mt-3 text-sm md:text-base text-slate-500">Dari Bahasa, Desain, Public Speaking, hingga Programming — setiap kelas dilengkapi outcome belajar, jadwal, dan kuota kursi yang transparan.</p>
-        </div>
-        
-        <div id="public-products" class="catalog-grid">
-            <div id="katalog-loader" class="col-span-full text-center py-10 rounded-[1.5rem] border border-dashed border-slate-200 bg-white/90 shadow-sm">
-                <div class="animate-spin w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p class="text-slate-400 text-[11px] font-bold uppercase tracking-[0.22em] animate-pulse">Menyiapkan katalog kelas offline...</p>
+                        <div class="mt-6 grid sm:grid-cols-3 gap-3 text-sm">
+                            <div class="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3">
+                                <p class="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Metode</p>
+                                <p class="mt-1 font-bold text-slate-800">Tatap Muka + Live Online</p>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3">
+                                <p class="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Pendampingan</p>
+                                <p class="mt-1 font-bold text-slate-800">Mentor Praktisi</p>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3">
+                                <p class="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Fokus Outcome</p>
+                                <p class="mt-1 font-bold text-slate-800">Project & Portofolio</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="lg:col-span-5 rounded-[1.6rem] border border-indigo-100 bg-white/90 p-5 sm:p-6 shadow-lg shadow-slate-200">
+                        <h2 class="text-lg sm:text-xl font-black text-slate-900">Kenapa peserta memilih program kami?</h2>
+                        <p class="mt-2 text-sm text-slate-500 leading-7">Bukan sekadar nonton materi. Anda belajar dengan framework, praktik terarah, dan feedback yang membantu progres tetap konsisten.</p>
+
+                        <div class="soft-divider my-5"></div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <div class="flex items-start gap-3">
+                                <span class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600"><i data-lucide="monitor-smartphone" class="w-4 h-4"></i></span>
+                                <div>
+                                    <p class="font-bold text-slate-800">Format fleksibel</p>
+                                    <p>Belajar offline di kelas atau online live session sesuai kebutuhan Anda.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600"><i data-lucide="book-open-check" class="w-4 h-4"></i></span>
+                                <div>
+                                    <p class="font-bold text-slate-800">Roadmap terstruktur</p>
+                                    <p>Setiap modul dirancang bertahap agar materi mudah dipahami dan langsung bisa dipraktikkan.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-amber-50 text-amber-600"><i data-lucide="badge-check" class="w-4 h-4"></i></span>
+                                <div>
+                                    <p class="font-bold text-slate-800">Terpercaya untuk individu & corporate</p>
+                                    <p>Program reguler dan in-house training siap disesuaikan dengan target pembelajaran.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="faq" class="max-w-5xl mx-auto px-6 pb-20">
-        <div class="max-w-2xl mx-auto text-center mb-8 md:mb-10">
-            <div class="inline-flex items-center rounded-full border border-indigo-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-indigo-600 shadow-sm shadow-slate-100">FAQ Kursus Offline</div>
-            <h2 class="mt-4 text-2xl md:text-3xl font-black tracking-tight text-slate-900">Pertanyaan umum sebelum daftar kelas tatap muka</h2>
-        </div>
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-6 md:mt-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                <article class="feature-card p-5">
+                    <p class="text-[11px] font-black uppercase tracking-[0.22em] text-indigo-500">Benefit Program</p>
+                    <h3 class="mt-2 text-base font-bold text-slate-900">Materi aplikatif</h3>
+                    <p class="mt-2 text-sm text-slate-600 leading-7">Fokus pada keterampilan yang memang dibutuhkan industri dan langsung bisa digunakan.</p>
+                </article>
+                <article class="feature-card p-5">
+                    <p class="text-[11px] font-black uppercase tracking-[0.22em] text-indigo-500">Benefit Program</p>
+                    <h3 class="mt-2 text-base font-bold text-slate-900">Kelas interaktif</h3>
+                    <p class="mt-2 text-sm text-slate-600 leading-7">Diskusi dua arah, studi kasus, dan sesi tanya jawab agar proses belajar lebih hidup.</p>
+                </article>
+                <article class="feature-card p-5">
+                    <p class="text-[11px] font-black uppercase tracking-[0.22em] text-indigo-500">Benefit Program</p>
+                    <h3 class="mt-2 text-base font-bold text-slate-900">Progress terukur</h3>
+                    <p class="mt-2 text-sm text-slate-600 leading-7">Terdapat evaluasi proyek, umpan balik mentor, dan panduan lanjutan setelah kelas selesai.</p>
+                </article>
+            </div>
+        </section>
 
-        <div class="grid gap-4">
-            <article class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200">
-                <h3 class="text-base md:text-lg font-bold text-slate-900">Apakah saya bisa ikut kelas kalau masih pemula?</h3>
-                <p class="mt-3 text-sm md:text-base leading-7 text-slate-600">Bisa. Kami menyediakan level pemula sampai lanjutan. Tim admin akan membantu rekomendasi kelas berdasarkan tujuan dan latar belakang Anda.</p>
-            </article>
-            <article class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200">
-                <h3 class="text-base md:text-lg font-bold text-slate-900">Apakah tersedia jadwal weekday dan weekend?</h3>
-                <p class="mt-3 text-sm md:text-base leading-7 text-slate-600">Ya. Tersedia kelas reguler weekday, kelas akhir pekan, dan beberapa batch intensif sesuai program yang dipilih.</p>
-            </article>
-            <article class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200">
-                <h3 class="text-base md:text-lg font-bold text-slate-900">Bagaimana alur pendaftaran kelas?</h3>
-                <p class="mt-3 text-sm md:text-base leading-7 text-slate-600">Pilih program, cek jadwal, isi form registrasi, lalu tim kami akan melakukan konfirmasi kuota, konsultasi kebutuhan, dan tindak lanjut administrasi.</p>
-            </article>
-        </div>
-    </section>
+        <section id="metode-belajar" class="max-w-7xl mx-auto px-4 sm:px-6 mt-10 md:mt-14">
+            <div class="max-w-3xl mx-auto text-center">
+                <span class="inline-flex items-center rounded-full border border-indigo-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-indigo-600">Metode Belajar</span>
+                <h2 class="mt-4 text-2xl sm:text-3xl font-black tracking-tight text-slate-900">Pilih format pembelajaran sesuai gaya belajar dan target Anda</h2>
+                <p class="mt-3 text-sm sm:text-base text-slate-500 leading-7">Setiap peserta dapat memilih jalur belajar offline, online, atau kombinasi hybrid dengan kualitas materi dan pendampingan yang tetap konsisten.</p>
+            </div>
 
-    <footer class="bg-white border-t py-12 mt-20">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div class="mt-7 grid lg:grid-cols-2 gap-4 lg:gap-5">
+                <article class="format-card p-6">
+                    <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 mb-4"><i data-lucide="building-2" class="w-5 h-5"></i></div>
+                    <h3 class="text-lg font-black text-slate-900">Kelas Offline Intensif</h3>
+                    <p class="mt-3 text-sm text-slate-600 leading-7">Belajar tatap muka dalam kelompok kecil untuk interaksi lebih fokus, praktik langsung, dan mentoring yang lebih personal.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-slate-600">
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-600 mt-0.5"></i><span>Hands-on practice di kelas</span></li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-600 mt-0.5"></i><span>Review tugas langsung oleh mentor</span></li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-600 mt-0.5"></i><span>Networking dengan sesama peserta</span></li>
+                    </ul>
+                </article>
+
+                <article class="format-card p-6">
+                    <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 mb-4"><i data-lucide="monitor-play" class="w-5 h-5"></i></div>
+                    <h3 class="text-lg font-black text-slate-900">Kelas Online Live</h3>
+                    <p class="mt-3 text-sm text-slate-600 leading-7">Belajar dari mana saja dengan sesi live interaktif, rekaman materi, dan jadwal fleksibel untuk peserta dengan aktivitas padat.</p>
+                    <ul class="mt-4 space-y-2 text-sm text-slate-600">
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 mt-0.5"></i><span>Sesi live terjadwal + Q&A</span></li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 mt-0.5"></i><span>Akses materi pendukung digital</span></li>
+                        <li class="flex items-start gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 mt-0.5"></i><span>Pendampingan progres via grup belajar</span></li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 mt-10 md:mt-14">
+            <div class="section-shell p-6 sm:p-8">
+                <div class="max-w-3xl">
+                    <span class="inline-flex items-center rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-indigo-600">Alur Program</span>
+                    <h2 class="mt-4 text-2xl sm:text-3xl font-black tracking-tight text-slate-900">Proses belajar dirancang jelas dari orientasi hingga implementasi</h2>
+                </div>
+                <div class="mt-7 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <article class="program-step p-5">
+                        <p class="text-[11px] font-black text-indigo-500">01</p>
+                        <h3 class="mt-2 font-bold text-slate-900">Konsultasi tujuan</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-7">Tim akan membantu memetakan level awal dan target skill Anda.</p>
+                    </article>
+                    <article class="program-step p-5">
+                        <p class="text-[11px] font-black text-indigo-500">02</p>
+                        <h3 class="mt-2 font-bold text-slate-900">Pilih kelas terbaik</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-7">Rekomendasi program berdasarkan track, durasi, dan format belajar.</p>
+                    </article>
+                    <article class="program-step p-5">
+                        <p class="text-[11px] font-black text-indigo-500">03</p>
+                        <h3 class="mt-2 font-bold text-slate-900">Belajar & praktik</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-7">Materi dipelajari bertahap dengan studi kasus dan latihan proyek.</p>
+                    </article>
+                    <article class="program-step p-5">
+                        <p class="text-[11px] font-black text-indigo-500">04</p>
+                        <h3 class="mt-2 font-bold text-slate-900">Review hasil</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-7">Dapatkan feedback mentor dan arahan next step untuk pengembangan skill.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="katalog" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14 scroll-mt-24">
+            <div class="max-w-3xl mx-auto text-center mb-8 md:mb-10">
+                <div class="inline-flex items-center rounded-full border border-indigo-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-indigo-600 shadow-sm shadow-slate-100">Program Course Unggulan</div>
+                <h2 class="mt-4 text-2xl md:text-3xl font-black tracking-tight text-slate-900">Temukan program belajar berdasarkan level, topik, dan jadwal yang cocok</h2>
+                <p class="mt-3 text-sm md:text-base text-slate-500 leading-7">Setiap kelas dilengkapi ringkasan materi, metode belajar, dan detail investasi agar Anda bisa memilih program dengan lebih percaya diri.</p>
+            </div>
+
+            <div id="public-products" class="catalog-grid">
+                <div id="katalog-loader" class="col-span-full text-center py-10 rounded-[1.5rem] border border-dashed border-slate-200 bg-white/90 shadow-sm">
+                    <div class="animate-spin w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p class="text-slate-400 text-[11px] font-bold uppercase tracking-[0.22em] animate-pulse">Menyiapkan katalog program belajar...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mentor" class="max-w-7xl mx-auto px-4 sm:px-6 pb-4 md:pb-6">
+            <div class="max-w-3xl mx-auto text-center mb-7">
+                <div class="inline-flex items-center rounded-full border border-indigo-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-indigo-600 shadow-sm shadow-slate-100">Mentor Praktisi</div>
+                <h2 class="mt-4 text-2xl md:text-3xl font-black tracking-tight text-slate-900">Belajar langsung dari mentor yang berpengalaman di bidangnya</h2>
+                <p class="mt-3 text-sm md:text-base text-slate-500 leading-7">Kami menyeleksi mentor berdasarkan pengalaman proyek nyata, kemampuan mengajar, dan rekam jejak pendampingan peserta.</p>
+            </div>
+            <div id="mentor-preview" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <article class="mentor-card p-5">
+                    <p class="text-sm text-slate-500">Memuat data mentor...</p>
+                </article>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="instructors.html" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-700">
+                    Lihat profil mentor lengkap
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="testimoni" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
+            <div class="max-w-3xl mx-auto text-center mb-7">
+                <div class="inline-flex items-center rounded-full border border-indigo-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-indigo-600 shadow-sm shadow-slate-100">Social Proof</div>
+                <h2 class="mt-4 text-2xl md:text-3xl font-black tracking-tight text-slate-900">Apa kata peserta tentang pengalaman belajar bersama kami</h2>
+                <p class="mt-3 text-sm md:text-base text-slate-500 leading-7">Testimoni peserta mencerminkan kualitas materi, kejelasan alur belajar, dan dukungan mentor selama proses pembelajaran.</p>
+            </div>
+            <div id="testimonial-preview" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <article class="testimonial-card p-5">
+                    <p class="text-sm text-slate-500">Memuat testimoni peserta...</p>
+                </article>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="testimonials.html" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-700">
+                    Lihat semua testimoni
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </section>
+
+        <section id="faq" class="max-w-7xl mx-auto px-4 sm:px-6 pb-8 md:pb-12">
+            <div class="section-shell p-6 sm:p-8">
+                <div class="max-w-3xl mx-auto text-center mb-8">
+                    <div class="inline-flex items-center rounded-full border border-indigo-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-indigo-600 shadow-sm shadow-slate-100">FAQ Program</div>
+                    <h2 class="mt-4 text-2xl md:text-3xl font-black tracking-tight text-slate-900">Pertanyaan umum sebelum mendaftar</h2>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-4">
+                    <article class="rounded-[1.2rem] border border-slate-200 bg-white p-5 shadow-sm">
+                        <h3 class="text-base font-bold text-slate-900">Apakah pemula bisa mengikuti kelas?</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Ya. Tersedia kelas dari level fundamental hingga advance. Anda juga akan dibantu memilih kelas paling sesuai.</p>
+                    </article>
+                    <article class="rounded-[1.2rem] border border-slate-200 bg-white p-5 shadow-sm">
+                        <h3 class="text-base font-bold text-slate-900">Apakah ada pilihan offline dan online?</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Ada. Setiap program memiliki info format belajar, jadwal, serta metode pendampingan yang transparan.</p>
+                    </article>
+                    <article class="rounded-[1.2rem] border border-slate-200 bg-white p-5 shadow-sm">
+                        <h3 class="text-base font-bold text-slate-900">Bagaimana sistem mentoring selama belajar?</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Mentor memberikan arahan, review tugas, dan feedback agar pembelajaran tidak berhenti di teori.</p>
+                    </article>
+                    <article class="rounded-[1.2rem] border border-slate-200 bg-white p-5 shadow-sm">
+                        <h3 class="text-base font-bold text-slate-900">Apakah tersedia program corporate/in-house?</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Ya. Kami melayani kebutuhan training tim dengan silabus yang dapat disesuaikan target kompetensi organisasi.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-2 pb-10 md:pb-14">
+            <div class="rounded-[1.8rem] border border-slate-200 bg-slate-900 text-slate-100 p-6 sm:p-8 lg:p-10">
+                <div class="grid lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-8">
+                        <p class="text-[11px] font-black uppercase tracking-[0.22em] text-indigo-300">Siap Mulai Belajar?</p>
+                        <h2 class="mt-3 text-2xl sm:text-3xl font-black tracking-tight">Bangun skill yang lebih relevan untuk karier, bisnis, dan pengembangan diri Anda</h2>
+                        <p class="mt-3 text-sm sm:text-base text-slate-300 leading-7">Pilih program terbaik, konsultasikan kebutuhan belajar Anda, lalu mulai dengan jadwal yang paling sesuai.</p>
+                    </div>
+                    <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+                        <a href="#katalog" class="inline-flex justify-center items-center rounded-full bg-white text-slate-900 px-5 py-3 text-sm font-bold hover:bg-indigo-50 transition-colors">Pilih Program</a>
+                        <a href="contact.html" class="inline-flex justify-center items-center rounded-full border border-slate-600 text-white px-5 py-3 text-sm font-bold hover:border-indigo-300 hover:text-indigo-200 transition-colors">Hubungi Tim Konsultan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
-                <h3 class="text-xl font-black text-indigo-600 mb-4 dyn-site-name uppercase">WEB KURSUS OFFLINE</h3>
-                <p class="text-sm text-slate-500 dyn-site-tagline">Platform kursus tatap muka untuk pelatihan skill praktis, bootcamp, dan workshop profesional.</p>
+                <h3 class="text-xl font-black text-indigo-600 mb-4 dyn-site-name uppercase">Akademi Skill Pro</h3>
+                <p class="text-sm text-slate-500 dyn-site-tagline">Platform pembelajaran offline & online untuk membantu peserta belajar lebih terarah, praktis, dan siap implementasi.</p>
             </div>
             <div>
-                <h4 class="font-bold mb-4 text-slate-800">Informasi</h4>
+                <h4 class="font-bold mb-4 text-slate-800">Navigasi</h4>
                 <ul class="text-sm text-slate-500 space-y-2">
-                    <li><a href="/p.html?s=tentang-kami" class="hover:text-indigo-600 transition-colors">Tentang Lembaga</a></li>
-                    <li><a href="/p.html?s=jadwal-kelas" class="hover:text-indigo-600 transition-colors">Jadwal Kelas</a></li>
-                    <li><a href="/p.html?s=registrasi" class="hover:text-indigo-600 transition-colors">Registrasi Program</a></li>
+                    <li><a href="about.html" class="hover:text-indigo-600 transition-colors">Tentang Program</a></li>
+                    <li><a href="courses.html" class="hover:text-indigo-600 transition-colors">Katalog Kelas</a></li>
+                    <li><a href="schedules.html" class="hover:text-indigo-600 transition-colors">Jadwal Belajar</a></li>
                 </ul>
             </div>
             <div>
@@ -781,8 +1007,8 @@
                 <p class="text-sm text-slate-500">WhatsApp: <a id="dyn-wa-link" href="#" class="text-indigo-600 hover:underline">...</a></p>
             </div>
         </div>
-        <div class="text-center text-xs text-slate-400 mt-12 pt-8 border-t">
-             &copy; 2026 <span class="dyn-site-name">Web Kursus Offline</span>. Hak cipta dilindungi.
+        <div class="text-center text-xs text-slate-400 mt-12 pt-8 border-t border-slate-200">
+            &copy; 2026 <span class="dyn-site-name">Akademi Skill Pro</span>. Hak cipta dilindungi.
         </div>
     </footer>
 
@@ -790,7 +1016,7 @@
         const CACHE_KEY_CATALOG = 'offline_courses_public_catalog';
         const LEGACY_CACHE_KEY_CATALOG = 'herbal_public_catalog';
         const CACHE_AGE_CATALOG = 10 * 60 * 1000;
-        const DEFAULT_PRODUCT_DESC = 'Program kursus offline dengan praktik langsung, instruktur berpengalaman, dan hasil belajar yang terukur';
+        const DEFAULT_PRODUCT_DESC = 'Program belajar offline dan online dengan kurikulum terstruktur, praktik aplikatif, serta pendampingan mentor.';
 
         function normalizeCatalogText(value) {
             return String(value == null ? '' : value)
@@ -821,7 +1047,7 @@
             
             // Safety check: Pastikan products adalah array valid
             if (!products || !Array.isArray(products) || products.length === 0) {
-                container.innerHTML = '<p class="text-slate-400 text-center col-span-full py-10 border border-dashed border-slate-200 bg-white rounded-[1.5rem] shadow-sm">Katalog kelas sedang diperbarui. Silakan cek lagi dalam beberapa saat.</p>';
+                container.innerHTML = '<p class="text-slate-400 text-center col-span-full py-10 border border-dashed border-slate-200 bg-white rounded-[1.5rem] shadow-sm">Program sedang diperbarui. Silakan cek lagi dalam beberapa saat.</p>';
                 if (window.CEPAT_SEO && typeof window.CEPAT_SEO.sync === 'function') {
                     window.CEPAT_SEO.sync({ products: [], reason: 'catalog-empty' });
                 }
@@ -835,13 +1061,14 @@
 
             container.innerHTML = [...products].reverse().map((p, index) => {
                 let delayClass = `delay-${(index % 3) + 1}`;
-                const rawTitle = normalizeCatalogText((p && (p.title || p.name || p.course_title)) || 'Program Kursus Offline');
+                const rawTitle = normalizeCatalogText((p && (p.title || p.name || p.course_title)) || 'Program Belajar Profesional');
                 const rawDesc = normalizeCatalogText((p && (p.short_description || p.desc || p.description)) || DEFAULT_PRODUCT_DESC);
                 const safeTitle = escapeCatalogHtml(rawTitle);
                 const safeDesc = escapeCatalogHtml(rawDesc);
                 const fallbackLetter = rawTitle.trim().charAt(0).toUpperCase() || 'P';
-                const category = normalizeCatalogText((p && (p.category_name || p.category || p.track)) || 'Kursus Offline');
-                const location = normalizeCatalogText((p && (p.branch_city || p.branch || p.location)) || 'Lokasi tersedia');
+                const category = normalizeCatalogText((p && (p.category_name || p.category || p.track)) || 'Program Course');
+                const location = normalizeCatalogText((p && (p.branch_city || p.branch || p.location)) || 'Hybrid / Multi Lokasi');
+                const formatMode = normalizeCatalogText((p && (p.delivery_mode || p.course_mode || p.mode || p.class_type)) || 'Offline / Online');
                 
                 // Logic URL Detail (Bisa ke LP atau Checkout)
                 let detailUrl = (p.lp_url && p.lp_url !== "") ? p.lp_url : `checkout.html?id=${p.id}`;
@@ -871,10 +1098,10 @@
                         <div class="mt-auto pt-4 border-t border-slate-100">
                             <div class="flex items-end justify-between gap-3 mb-3">
                                 <div class="min-w-0">
-                                    <p class="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Biaya Mulai</p>
+                                    <p class="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Investasi Mulai</p>
                                      <p class="text-sm md:text-base font-black tracking-tight text-slate-900">Rp ${finalPrice.toLocaleString('id-ID')}</p>
                                 </div>
-                                <span class="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-500">Kursus Offline</span>
+                                <span class="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-500">${escapeCatalogHtml(formatMode)}</span>
                             </div>
 
                             <div class="grid grid-cols-2 gap-2">
@@ -882,11 +1109,11 @@
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-2 text-[10px] md:text-[11px] font-bold text-slate-600 hover:border-slate-300 hover:bg-slate-50 transition-colors">
-                                    Lihat Program
+                                    Lihat Detail
                                 </a>
                                 <a href="${checkoutUrl}" 
                                     class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-3 py-2 text-[10px] md:text-[11px] font-bold text-white shadow-sm shadow-indigo-200 hover:bg-indigo-700 transition-colors">
-                                    Daftar Sekarang
+                                    Daftar Kelas
                                 </a>
                             </div>
                         </div>
@@ -899,6 +1126,134 @@
             if (window.CEPAT_SEO && typeof window.CEPAT_SEO.sync === 'function') {
                 window.CEPAT_SEO.sync({ products: products, reason: 'catalog-render' });
             }
+        }
+
+        function renderMentorPreview(instructors) {
+            const container = document.getElementById('mentor-preview');
+            if (!container) return;
+
+            const list = Array.isArray(instructors) ? instructors.filter(Boolean).slice(0, 3) : [];
+            if (!list.length) {
+                container.innerHTML = '<article class="mentor-card p-5"><h3 class="font-bold text-slate-900">Profil mentor akan segera ditampilkan</h3><p class="mt-2 text-sm text-slate-600 leading-7">Silakan buka halaman mentor untuk melihat daftar pengajar yang tersedia pada program kami.</p></article>';
+                return;
+            }
+
+            container.innerHTML = list.map((item) => {
+                const nameRaw = normalizeCatalogText(item.full_name || item.name || 'Mentor Profesional');
+                const specRaw = normalizeCatalogText(item.specialization || item.expertise || item.role || 'Praktisi industri');
+                const bioRaw = normalizeCatalogText(item.bio || item.description || 'Berpengalaman mendampingi peserta dari fundamental hingga implementasi proyek.');
+                const years = Number(item.experience_years || item.years_experience || 0);
+                const initial = (nameRaw.charAt(0) || 'M').toUpperCase();
+
+                return `
+                    <article class="mentor-card p-5 h-full flex flex-col">
+                        <div class="flex items-start gap-3">
+                            <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-black text-sm">${escapeCatalogHtml(initial)}</span>
+                            <div class="min-w-0">
+                                <h3 class="text-base font-black text-slate-900 truncate">${escapeCatalogHtml(nameRaw)}</h3>
+                                <p class="text-sm text-indigo-600 font-semibold">${escapeCatalogHtml(specRaw)}</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm text-slate-600 leading-7 flex-1">${escapeCatalogHtml(bioRaw)}</p>
+                        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">${years > 0 ? `${years} Tahun Pengalaman` : 'Mentor Tersertifikasi'}</span>
+                            <a href="instructors.html" class="text-xs font-bold text-indigo-600 hover:text-indigo-700">Profil</a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function renderTestimonialPreview(testimonials) {
+            const container = document.getElementById('testimonial-preview');
+            if (!container) return;
+
+            const list = Array.isArray(testimonials) ? testimonials.filter(Boolean).slice(0, 3) : [];
+            if (!list.length) {
+                container.innerHTML = '<article class="testimonial-card p-5"><h3 class="font-bold text-slate-900">Testimoni peserta akan segera ditampilkan</h3><p class="mt-2 text-sm text-slate-600 leading-7">Lihat halaman testimoni untuk membaca pengalaman peserta yang sudah mengikuti program.</p></article>';
+                return;
+            }
+
+            container.innerHTML = list.map((item) => {
+                const reviewRaw = normalizeCatalogText(item.review || item.comment || 'Materi tersusun rapi, mentor komunikatif, dan proses belajarnya sangat membantu.');
+                const nameRaw = normalizeCatalogText(item.student_name || item.name || 'Peserta Program');
+                const cityRaw = normalizeCatalogText(item.city || item.location || 'Indonesia');
+                const rawRating = Number(item.rating || 5);
+                const rating = Math.max(1, Math.min(5, Number.isNaN(rawRating) ? 5 : rawRating));
+                const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+
+                return `
+                    <article class="testimonial-card p-5 h-full flex flex-col">
+                        <p class="text-amber-500 text-sm tracking-[0.12em]">${stars}</p>
+                        <p class="mt-3 text-sm text-slate-600 leading-7 flex-1">“${escapeCatalogHtml(reviewRaw)}”</p>
+                        <div class="mt-4 pt-4 border-t border-slate-100">
+                            <p class="text-sm font-bold text-slate-900">${escapeCatalogHtml(nameRaw)}</p>
+                            <p class="text-xs text-slate-500">${escapeCatalogHtml(cityRaw)}</p>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        async function fetchPublicList(action) {
+            const endpoint = window.API_URL || window.SCRIPT_URL || ((typeof SCRIPT_URL !== 'undefined') ? SCRIPT_URL : '');
+            if (!endpoint) return [];
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: action })
+            });
+            if (!response.ok) return [];
+            const payload = await response.json();
+            if (!payload || payload.status !== 'success') return [];
+            if (Array.isArray(payload.data)) return payload.data;
+            if (Array.isArray(payload.available)) return payload.available;
+            return [];
+        }
+
+        async function loadTrustSections() {
+            let instructors = [];
+            let testimonials = [];
+            try {
+                if (window.CEPAT_API && typeof window.CEPAT_API.batch === 'function') {
+                    const batch = await window.CEPAT_API.batch([
+                        { action: 'get_instructors_public' },
+                        { action: 'get_testimonials_public' }
+                    ]);
+                    const results = Array.isArray(batch && batch.results) ? batch.results : [];
+                    const mentorResponse = results[0] && results[0].data;
+                    const testimonialResponse = results[1] && results[1].data;
+
+                    if (mentorResponse && mentorResponse.status === 'success') {
+                        instructors = Array.isArray(mentorResponse.data)
+                            ? mentorResponse.data
+                            : (Array.isArray(mentorResponse.available) ? mentorResponse.available : []);
+                    }
+                    if (testimonialResponse && testimonialResponse.status === 'success') {
+                        testimonials = Array.isArray(testimonialResponse.data)
+                            ? testimonialResponse.data
+                            : (Array.isArray(testimonialResponse.available) ? testimonialResponse.available : []);
+                    }
+                }
+
+                if (!instructors.length || !testimonials.length) {
+                    const fallbackData = await Promise.all([
+                        !instructors.length ? fetchPublicList('get_instructors_public') : Promise.resolve(instructors),
+                        !testimonials.length ? fetchPublicList('get_testimonials_public') : Promise.resolve(testimonials)
+                    ]);
+                    instructors = fallbackData[0] || instructors;
+                    testimonials = fallbackData[1] || testimonials;
+                }
+            } catch (error) {
+                console.error('Trust section load failed', error);
+            }
+
+            renderMentorPreview(instructors);
+            renderTestimonialPreview(testimonials);
+            if (window.CEPAT_SEO && typeof window.CEPAT_SEO.scheduleSync === 'function') {
+                window.CEPAT_SEO.scheduleSync('trust-render');
+            }
+            lucide.createIcons();
         }
 
         // --> FUNGSI LOADING SAT SET (Optimistic UI & Background Sync)
@@ -914,7 +1269,7 @@
             } else if (cachedPayload && typeof cachedPayload === 'object') {
                 cachedList = Array.isArray(cachedPayload.data) ? cachedPayload.data : null;
                 cachedAt = Number(cachedPayload.time || 0);
-                if (!isFinite(cachedAt)) cachedAt = 0;
+                if (!Number.isFinite(cachedAt)) cachedAt = 0;
             }
             
             // JIKA ADA CACHE: Langsung render tanpa spinner loading!
@@ -997,7 +1352,7 @@
             } catch (err) { 
                 console.error('Background sync failed', err);
                 if (!cachedData) {
-                    document.getElementById('public-products').innerHTML = '<p class="text-red-500 text-center col-span-full bg-red-50 border border-red-100 py-4 rounded-[1.5rem]">Katalog kelas belum berhasil dimuat. Silakan refresh halaman dan coba lagi.</p>';
+                    document.getElementById('public-products').innerHTML = '<p class="text-red-500 text-center col-span-full bg-red-50 border border-red-100 py-4 rounded-[1.5rem]">Program belum berhasil dimuat. Silakan refresh halaman dan coba lagi.</p>';
                     if (window.CEPAT_SEO && typeof window.CEPAT_SEO.scheduleSync === 'function') {
                         window.CEPAT_SEO.scheduleSync('catalog-error');
                     }
@@ -1008,6 +1363,7 @@
         window.onload = () => { 
             lucide.createIcons(); 
             loadPublicCatalog(); 
+            loadTrustSections();
         };
     </script>
 </body>
