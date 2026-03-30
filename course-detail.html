@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detail Kursus Offline</title>
+  <link rel="stylesheet" href="tailwind.css" />
+  <script src="site.config.js"></script>
+  <script src="config.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <header class="bg-white border-b border-slate-200">
+    <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-black text-indigo-600">WEB KURSUS OFFLINE</a>
+      <a href="courses.html" class="text-sm font-semibold">← Kembali ke Katalog</a>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 grid lg:grid-cols-3 gap-6">
+    <section class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-6">
+      <p id="category" class="text-xs font-bold uppercase tracking-wider text-indigo-600">Kategori</p>
+      <h1 id="title" class="text-3xl font-black mt-2">Memuat...</h1>
+      <p id="desc" class="text-slate-500 mt-3">-</p>
+      <div class="grid sm:grid-cols-2 gap-3 mt-6 text-sm">
+        <div><span class="font-semibold">Level:</span> <span id="level">-</span></div>
+        <div><span class="font-semibold">Durasi:</span> <span id="duration">-</span></div>
+        <div><span class="font-semibold">Total Sesi:</span> <span id="sessions">-</span></div>
+        <div><span class="font-semibold">Sertifikat:</span> <span id="cert">-</span></div>
+      </div>
+      <h2 class="text-xl font-bold mt-8">Outcome Belajar</h2>
+      <p id="outcomes" class="text-slate-600 mt-2">-</p>
+    </section>
+
+    <aside class="bg-white border border-slate-200 rounded-2xl p-6 h-fit">
+      <p class="text-xs uppercase tracking-wider text-slate-400 font-bold">Biaya Program</p>
+      <p id="price" class="text-3xl font-black mt-1">-</p>
+      <a id="cta" href="checkout.html" class="mt-5 inline-flex w-full justify-center rounded-xl bg-indigo-600 text-white py-3 font-bold">Daftar Sekarang</a>
+      <h3 class="font-bold mt-8 mb-2">Jadwal Terkait</h3>
+      <ul id="schedules" class="space-y-2 text-sm text-slate-600"></ul>
+    </aside>
+  </main>
+
+  <script>
+    const apiUrl = window.API_URL || window.SCRIPT_URL || '/api';
+    const esc = (v) => String(v || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const params = new URLSearchParams(location.search);
+    const slug = params.get('slug') || '';
+    const id = params.get('id') || '';
+    async function api(action, payload = {}) {
+      const r = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...payload }) });
+      return r.json();
+    }
+    async function init() {
+      const courseRes = slug ? await api('get_course_by_slug', { slug }) : await api('get_course_public', { id });
+      if (courseRes.status !== 'success') return;
+      const c = courseRes.data || {};
+      document.getElementById('category').textContent = c.category_name || 'Kursus Offline';
+      document.getElementById('title').textContent = c.title || 'Program Kursus';
+      document.getElementById('desc').textContent = c.full_description || c.short_description || '-';
+      document.getElementById('level').textContent = c.level || '-';
+      document.getElementById('duration').textContent = c.duration_text || '-';
+      document.getElementById('sessions').textContent = c.total_sessions || '-';
+      document.getElementById('cert').textContent = c.certificate_available ? 'Tersedia' : 'Tidak';
+      document.getElementById('outcomes').textContent = c.learning_outcomes || c.benefits || '-';
+      document.getElementById('price').textContent = 'Rp ' + Number(c.promo_price || c.price || 0).toLocaleString('id-ID');
+      document.getElementById('cta').href = `checkout.html?id=${encodeURIComponent(c.id || '')}`;
+
+      const scheduleRes = await api('get_schedules_public', {});
+      const list = (scheduleRes.status === 'success' ? (scheduleRes.data || []) : []).filter((s) => String(s.course_id || '') === String(c.id || '')).slice(0, 5);
+      document.getElementById('schedules').innerHTML = list.length
+        ? list.map((s) => `<li class="border border-slate-200 rounded-lg p-2">${esc(s.batch_code)} • ${esc(s.class_days)} • ${esc(s.class_time)} • ${esc(s.status)}</li>`).join('')
+        : '<li class="text-slate-400">Jadwal akan diumumkan.</li>';
+    }
+    init();
+  </script>
+</body>
+</html>

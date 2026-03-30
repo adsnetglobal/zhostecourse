@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Testimoni Peserta</title>
+  <link rel="stylesheet" href="tailwind.css" />
+  <script src="site.config.js"></script>
+  <script src="config.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <header class="bg-white border-b border-slate-200"><nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between"><a href="index.html" class="font-black text-indigo-600">WEB KURSUS OFFLINE</a><a href="courses.html" class="text-sm font-semibold">Lihat Kursus</a></nav></header>
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-black mb-2">Testimoni Peserta</h1>
+    <p class="text-slate-500 mb-6">Ulasan nyata dari peserta program tatap muka.</p>
+    <div id="grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </main>
+  <script>
+    const apiUrl = window.API_URL || window.SCRIPT_URL || '/api';
+    const esc = (v) => String(v || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    fetch(apiUrl, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({ action:'get_testimonials_public' }) })
+      .then((r) => r.json())
+      .then((res) => {
+        const list = res.status === 'success' ? (res.data || []) : [];
+        document.getElementById('grid').innerHTML = list.map((t) => `
+          <article class="bg-white border border-slate-200 rounded-2xl p-5">
+            <p class="text-amber-500 text-sm">${'★'.repeat(Math.max(1, Number(t.rating || 5)))}</p>
+            <p class="mt-3 text-slate-600">“${esc(t.review || '-')}”</p>
+            <p class="mt-4 font-bold">${esc(t.student_name || 'Peserta')}</p>
+            <p class="text-sm text-slate-400">${esc(t.city || '')}</p>
+          </article>
+        `).join('') || '<p class="text-slate-400">Testimoni belum tersedia.</p>';
+      });
+  </script>
+</body>
+</html>

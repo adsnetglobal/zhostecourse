@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar Kursus Offline</title>
+  <link rel="stylesheet" href="tailwind.css" />
+  <script src="site.config.js"></script>
+  <script src="config.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <header class="sticky top-0 bg-white/90 backdrop-blur border-b border-slate-200 z-20">
+    <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="font-black text-indigo-600 tracking-tight">WEB KURSUS OFFLINE</a>
+      <div class="flex gap-4 text-sm font-semibold">
+        <a href="courses.html" class="text-indigo-600">Kursus</a><a href="schedules.html">Jadwal</a><a href="contact.html">Kontak</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-black mb-2">Katalog Program Kursus Offline</h1>
+    <p class="text-slate-500 mb-6">Filter berdasarkan kategori, level, kota, dan kata kunci.</p>
+
+    <form id="filters" class="grid md:grid-cols-4 gap-3 mb-6">
+      <input id="q" class="rounded-xl border border-slate-200 px-3 py-2" placeholder="Cari program..." />
+      <select id="category" class="rounded-xl border border-slate-200 px-3 py-2"><option value="">Semua kategori</option></select>
+      <select id="level" class="rounded-xl border border-slate-200 px-3 py-2"><option value="">Semua level</option><option>Pemula</option><option>Menengah</option><option>Lanjutan</option></select>
+      <input id="city" class="rounded-xl border border-slate-200 px-3 py-2" placeholder="Kota/Cabang" />
+    </form>
+
+    <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    <p id="empty" class="hidden text-sm text-slate-500 text-center py-10">Belum ada data kursus.</p>
+  </main>
+
+  <script>
+    const apiUrl = window.API_URL || window.SCRIPT_URL || '/api';
+    const esc = (v) => String(v || '').replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    async function api(action, payload = {}) {
+      const r = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action, ...payload }) });
+      return r.json();
+    }
+    async function loadCategories() {
+      const res = await api('get_course_categories');
+      if (res.status !== 'success') return;
+      const sel = document.getElementById('category');
+      (res.data || []).forEach((c) => {
+        const opt = document.createElement('option');
+        opt.value = c.slug || c.name;
+        opt.textContent = c.name;
+        sel.appendChild(opt);
+      });
+    }
+    async function loadCourses() {
+      const res = await api('get_courses_public', {
+        query: document.getElementById('q').value,
+        category: document.getElementById('category').value,
+        level: document.getElementById('level').value,
+        city: document.getElementById('city').value
+      });
+      const grid = document.getElementById('grid');
+      const empty = document.getElementById('empty');
+      const list = res.status === 'success' ? (res.data || []) : [];
+      grid.innerHTML = '';
+      if (!list.length) { empty.classList.remove('hidden'); return; }
+      empty.classList.add('hidden');
+      list.forEach((c) => {
+        const price = Number(c.promo_price || c.price || 0);
+        grid.insertAdjacentHTML('beforeend', `
+          <article class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+            <p class="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">${esc(c.category_name || 'Kursus')}</p>
+            <h2 class="font-bold text-lg mt-1">${esc(c.title)}</h2>
+            <p class="text-sm text-slate-500 mt-2 line-clamp-3">${esc(c.short_description || '')}</p>
+            <div class="flex items-center justify-between mt-4">
+              <span class="font-black text-slate-900">Rp ${price.toLocaleString('id-ID')}</span>
+              <a class="text-sm font-bold text-indigo-600" href="course-detail.html?slug=${encodeURIComponent(c.slug || '')}">Lihat Detail</a>
+            </div>
+          </article>
+        `);
+      });
+    }
+    document.getElementById('filters').addEventListener('input', loadCourses);
+    document.getElementById('filters').addEventListener('change', loadCourses);
+    Promise.all([loadCategories(), loadCourses()]);
+  </script>
+</body>
+</html>
